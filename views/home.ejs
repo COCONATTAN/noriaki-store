@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d6e5d2">
+  <title><%= pageTitle %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Noriaki SHOP home">
+      <span class="brand-mark">n.</span>
+      <span><strong>NORIAKI</strong><small>digital goods shop</small></span>
+    </a>
+    <nav class="main-nav">
+      <a href="#shop">สินค้า</a>
+      <a href="#about">เกี่ยวกับร้าน</a>
+    </nav>
+    <div class="header-actions">
+      <a class="login-link" href="/login">เข้าสู่ระบบ</a>
+      <a class="account-button" href="/register">สมัครสมาชิก <span>↗</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="dot"></span> A LITTLE PLACE FOR YOUR DISCORD</span>
+        <h1>เติมความน่ารัก<br>ให้ Discord ของคุณ <span>♡</span></h1>
+        <p>รวมไฟล์อีโมจิและของตกแต่ง Discord ที่คัดสรรมาเพื่อคุณ ดาวน์โหลดได้ง่าย ๆ ในที่เดียว</p>
+        <a class="primary-button" href="#shop">เลือกชมสินค้า <span>→</span></a>
+        <div class="hero-note"><span>✿</span> little things, lovely details</div>
+      </div>
+      <div class="hero-art" aria-label="Noriaki shop decoration">
+        <div class="art-orbit orbit-one"></div>
+        <div class="art-orbit orbit-two"></div>
+        <div class="art-card">
+          <span class="art-sparkle">✦</span>
+          <div class="emoji-grid"><span>♡</span><span>✿</span><span>୨୧</span><span>☁</span><span>☆</span><span>𐙚</span><span>꒰ა</span><span>꒱</span><span>ෆ</span></div>
+          <p>your cute corner</p>
+        </div>
+        <span class="float flower">✿</span><span class="float heart">♡</span><span class="float star">✧</span>
+      </div>
+    </section>
+
+    <section class="benefits" id="about">
+      <div><span class="benefit-icon">♡</span><span><strong>ไฟล์ดิจิทัล</strong><small>ดาวน์โหลดได้หลังซื้อสำเร็จ</small></span></div>
+      <div><span class="benefit-icon">✿</span><span><strong>เลือกได้หลากหลาย</strong><small>รวมอีโมจิหลายสไตล์</small></span></div>
+      <div><span class="benefit-icon">☁</span><span><strong>เก็บประวัติสมาชิก</strong><small>กลับมาดูรายการซื้อได้</small></span></div>
+    </section>
+
+    <section class="shop-section" id="shop">
+      <div class="section-heading">
+        <div><span class="eyebrow">FIND YOUR FAVORITE</span><h2>เลือกความน่ารักที่ใช่ <span>♡</span></h2><p>ค้นพบชุดอีโมจิที่เหมาะกับสไตล์ของคุณ</p></div>
+        <div class="shop-count">COLLECTION <span>01</span></div>
+      </div>
+      <div class="category-list">
+        <% categories.forEach((category, index) => { %>
+          <button class="category-chip <%= index === 0 ? 'active' : '' %>" type="button"><%= category %></button>
+        <% }) %>
+      </div>
+      <div class="product-grid">
+        <% if (products.length === 0) { %>
+          <div class="empty-state">
+            <div class="empty-icon">୨୧</div>
+            <h3>กำลังเตรียมคอลเลกชันแรกอยู่เลย</h3>
+            <p>สินค้าอีโมจิจะปรากฏที่นี่เมื่อเพิ่มสินค้าในระบบหลังบ้าน</p>
+          </div>
+        <% } else { %>
+          <% products.forEach(product => { %>
+            <article class="product-card">
+              <div class="product-image"><img src="<%= product.image %>" alt="<%= product.name %>"></div>
+              <div class="product-info"><span class="product-category"><%= product.category %></span><h3><%= product.name %></h3><p><%= product.fileCount %> files</p><strong>฿<%= product.price %></strong></div>
+            </article>
+          <% }) %>
+        <% } %>
+      </div>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="/"><span class="brand-mark">n.</span><span><strong>NORIAKI</strong><small>digital goods shop</small></span></a><p>made with a little love ♡</p><small>© <%= new Date().getFullYear() %> Noriaki SHOP</small></footer>
+</body>
+</html>
