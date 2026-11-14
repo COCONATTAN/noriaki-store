@@ -24,6 +24,10 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get(["/login", "/register", "/account"], (req, res) => {
+  res.status(200).render("coming-soon", { pageTitle: "ระบบสมาชิกกำลังพัฒนา" });
+});
+
 app.get("/health", (req, res) => {
   res.json({ status: "ok", service: "noriaki-store" });
 });
